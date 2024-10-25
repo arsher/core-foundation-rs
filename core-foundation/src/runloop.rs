@@ -177,6 +177,9 @@ impl_TCFType!(
     CFRunLoopSourceGetTypeID
 );
 
+unsafe impl Send for CFRunLoopSource {}
+unsafe impl Sync for CFRunLoopSource {}
+
 impl CFRunLoopSource {
     pub fn from_file_descriptor(fd: &CFFileDescriptor, order: CFIndex) -> Option<CFRunLoopSource> {
         fd.to_run_loop_source(order)
